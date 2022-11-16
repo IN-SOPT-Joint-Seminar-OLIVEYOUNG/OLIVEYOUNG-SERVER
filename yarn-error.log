@@ -1,0 +1,43 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\youna\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js init
+
+PATH: 
+  C:\Users\youna\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\youna\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\PuTTY;C:\Program Files\Git\cmd;C:\Program Files\Redis;C:\Program Files\nodejs;C:\Program Files\Java\jdk-11.0.16\bin;C:\Users\youna\anaconda3;C:\Users\youna\anaconda3\Library\mingw-w64\bin;C:\Users\youna\anaconda3\Library\usr\bin;C:\Users\youna\anaconda3\Library\bin;C:\Users\youna\anaconda3\Scripts;C:\Users\youna\AppData\Local\Programs\Python\Python310\Scripts;C:\Users\youna\AppData\Local\Programs\Python\Python310;C:\Users\youna\AppData\Local\Microsoft\WindowsApps;C:\Users\youna\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\JetBrains\PyCharm 2021.3.2\bin;C:\Users\youna\AppData\Roaming\npm;D:\IntelliJ IDEA Community Edition 2022.1.4\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2022.2.1\bin;C:\Users\youna\AppData\Local\gitkraken\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.14.2
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (C:\Users\youna\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:137150:13)
+      at Interface.emit (node:events:526:28)
+      at Interface._ttyWrite (node:readline:1081:16)
+      at ReadStream.onkeypress (node:readline:288:10)
+      at ReadStream.emit (node:events:526:28)
+      at emitKeys (node:internal/readline/utils:358:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (node:internal/readline/emitKeypressEvents:61:36)
+      at ReadStream.emit (node:events:526:28)
+      at addChunk (node:internal/streams/readable:315:12)
+
+npm manifest: 
+  {
+    "name": "OLIVEYOUNG-SERVER",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/IN-SOPT-Joint-Seminar-OLIVEYOUNG/OLIVEYOUNG-SERVER.git",
+    "author": "dltjdn <hana40004@naver.com>",
+    "license": "MIT"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

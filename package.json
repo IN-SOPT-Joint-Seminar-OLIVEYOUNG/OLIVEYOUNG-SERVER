@@ -1,0 +1,20 @@
+{
+  "name": "OLIVEYOUNG-SERVER",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/IN-SOPT-Joint-Seminar-OLIVEYOUNG/OLIVEYOUNG-SERVER.git",
+  "author": "dltjdn <hana40004@naver.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon",
+    "build": "tsc && node dist"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "@types/node": "^18.11.9",
+    "nodemon": "^2.0.20"
+  }
+}
