@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Brand {
+  id       Int       @id @default(autoincrement())
+  name     String?   @db.VarChar(30)
+  brandImg String?   @db.VarChar(200)
+  Product  Product[]
+}
+
+model Product {
+  id              Int      @id @default(autoincrement())
+  name            String   @db.VarChar(20)
+  originalPrice   String?  @db.VarChar(20)
+  saledPrice      String?  @db.VarChar(20)
+  mainImg         String?  @db.VarChar(200)
+  detailImg       String?  @db.VarChar(200)
+  rate            Float?
+  salePercent     String?  @db.VarChar(10)
+  isLiked         Boolean?
+  reviewCount     String?  @db.VarChar(20)
+  detailImgHeight Int?
+  detailImgWidth  Int?
+  brand           Int?
+  Brand           Brand?   @relation(fields: [brand], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "brand")
+}
+
+model RecentWord {
+  id   Int     @id @default(autoincrement())
+  word String? @db.VarChar(100)
+}
