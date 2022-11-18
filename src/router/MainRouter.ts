@@ -7,6 +7,6 @@ const router: Router = Router();
 router.get("/pick", MainController.getPickedProduct);
 
 //* 브랜드별 상품 조회
-router.get("/brand", MainController.getBrandProduct);
+//router.get("/brand", MainController.getBrandProduct);
 
 export default router;
