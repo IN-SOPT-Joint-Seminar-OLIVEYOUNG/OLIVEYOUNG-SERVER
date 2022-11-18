@@ -36,7 +36,6 @@ const getPickedProduct = async (): Promise<ProductResponseDTO[] | null> => {
       pickedProductList.push(data);
     }
 
-    console.log(pickedProductList);
     return pickedProductList;
   } catch (error) {
     console.log(error);
