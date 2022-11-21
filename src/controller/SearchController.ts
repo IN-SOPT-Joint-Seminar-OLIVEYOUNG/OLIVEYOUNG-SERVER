@@ -1,19 +1,26 @@
+import { success } from "./../constants/response";
 import { Request, Response } from "express";
+import { rm, sc } from "../constants";
+import { fail } from "../constants/response";
 import { SearchService } from "../service";
 
 const getSearchData = async (req: Request, res: Response) => {
-    const name = req.query.name;
-
-    const data = await SearchService.getSearchData(name as string);
-
+  const name = req.query.name;
+  try {
+    const data = await SearchService.getSearchData();
     if (!data) {
-        return res.status(404).json({ status: 404, message: "존재하지 않는 데이터입니다." });
+      return res.status(sc.NOT_FOUND).send(fail(sc.NOT_FOUND, rm.NOT_FOUND));
     }
-    return res.status(200).json({ status: 200, message: "검색 결과 조회 성공", data });
+    return res.status(sc.OK).send(success(sc.OK, rm.GET_SEARCH_RESULT_SUCCESS, data));
+  } catch (error) {
+    return res
+      .status(sc.INTERNAL_SERVER_ERROR)
+      .send(fail(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
+  }
 };
 
 const SearchController = {
-    getSearchData,
+  getSearchData,
 };
 
 export default SearchController;
