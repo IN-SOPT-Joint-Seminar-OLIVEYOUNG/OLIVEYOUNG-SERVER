@@ -16,7 +16,7 @@ model Brand {
 
 model Product {
   id              Int      @id @default(autoincrement())
-  name            String   @db.VarChar(20)
+  name            String   @db.VarChar(150)
   originalPrice   String?  @db.VarChar(20)
   saledPrice      String?  @db.VarChar(20)
   mainImg         String?  @db.VarChar(200)
