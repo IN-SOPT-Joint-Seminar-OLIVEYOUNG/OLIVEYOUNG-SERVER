@@ -6,7 +6,6 @@ const prisma = new PrismaClient();
 const getPickedProduct = async (): Promise<ProductResponseDTO[] | null> => {
   try {
     const pickedProductList: ProductResponseDTO[] = [];
-    const picks = [1, 2, 3];
 
     for (var i = 1; i <= 3; i++) {
       const product = await prisma.product.findUnique({

@@ -6,7 +6,7 @@ import { MainService } from "../service";
 const getPickedProduct = async (req: Request, res: Response) => {
   try {
     const data = await MainService.getPickedProduct();
-    console.log(data);
+
     if (!data) {
       return res.status(sc.NOT_FOUND).send(fail(sc.NOT_FOUND, rm.NOT_FOUND));
     }
