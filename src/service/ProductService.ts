@@ -3,6 +3,7 @@ import { ProductResponseDTO } from "./../interfaces/ProductResponseDTO";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
+//* 상품 상세 정보 가져오기
 const getProductDetail = async () => {
     try {
         const productDetail = await prisma.product.findUnique({

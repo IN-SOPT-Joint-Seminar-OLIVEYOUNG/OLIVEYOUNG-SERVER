@@ -3,6 +3,7 @@ import { BrandResponseDTO } from "../interfaces/BrandResponseDTO";
 import { ProductResponseDTO } from "../interfaces/ProductResponseDTO";
 const prisma = new PrismaClient();
 
+//* 검색 결과 가져오기
 const getSearchData = async () => {
   try {
     const searchedProductList: ProductResponseDTO[] = [];
