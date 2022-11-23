@@ -56,8 +56,6 @@ const getSearchMain = async (): Promise<SearchResponseDTO | null> => {
   }
 };
 
-
-//* 검색 결과 가져오기
 const getSearchData = async () => {
   try {
     const searchedProductList: ProductResponseDTO[] = [];
@@ -66,8 +64,28 @@ const getSearchData = async () => {
     for (var i = 0; i < searchedProducts.length; i++) {
       const product = await prisma.product.findUnique({
         where: {
-          id: searchedProducts[i]
-        }
+          id: searchedProducts[i],
+        },
+      });
+
+      if (!product) return null;
+
+      const brand = await prisma.brand.findUnique({
+        where: {
+          id: product.brand as number,
+        },
+      });
+
+      const data = {
+        brandName: brand?.name as string,
+        mainImg: product?.mainImg as string,
+        name: product?.name as string,
+        saledPrice: product?.saledPrice as string,
+        salePercent: product?.salePercent as string,
+      };
+
+      if (!data) return null;
+
       searchedProductList.push(data);
     }
 
@@ -78,7 +96,7 @@ const getSearchData = async () => {
       const brand = await prisma.brand.findUnique({
         where: {
           id: searchedBrands[i],
-        }
+        },
       });
 
       if (!brand) return null;
@@ -88,12 +106,11 @@ const getSearchData = async () => {
         brandImg: brand?.brandImg as string,
       };
 
-      if(!data) return null;
+      if (!data) return null;
 
       searchedBrandList.push(data);
     }
-    return {"brands": searchedBrandList, "products": searchedProductList};
-     
+    return { brands: searchedBrandList, products: searchedProductList };
   } catch (error) {
     console.log(error);
     throw error;
@@ -101,8 +118,8 @@ const getSearchData = async () => {
 };
 
 const SearchService = {
-    getSearchData,
-    getSearchMain,
+  getSearchData,
+  getSearchMain,
 };
 
 export default SearchService;
