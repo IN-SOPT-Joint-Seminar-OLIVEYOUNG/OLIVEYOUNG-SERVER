@@ -19,8 +19,23 @@ const getProductDetail = async (req: Request, res: Response) => {
   }
 };
 
+const putProductIsLike = async (req: Request, res: Response) => {
+  const productId = req.params;
+  try {
+    const data = await ProductService.putProductIsLike();
+    if (!data) {
+      return res.status(sc.NOT_FOUND).send(fail(sc.NOT_FOUND, rm.NOT_FOUND));
+    }
+    return res.status(sc.OK).send(success(sc.OK, rm.LIKE_SUCCESS, data));
+  } catch (error) {
+    return res.status(sc.INTERNAL_SERVER_ERROR).send(fail(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
+  }
+  
+};
+
 const ProductController = {
     getProductDetail,
+    putProductIsLike,
 };
 
 export default ProductController;

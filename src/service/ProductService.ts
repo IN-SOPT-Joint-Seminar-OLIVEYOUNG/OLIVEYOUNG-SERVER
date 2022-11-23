@@ -92,8 +92,35 @@ const getProductDetail = async () => {
     }
 };
 
+//* 좋아요 기능
+const putProductIsLike = async() => {
+    try{
+        const product = await prisma.product.findUnique({
+            where:{
+                id: 7,
+            }
+        });
+        if(!product) return null;
+        const data = await prisma.product.update({
+            where: {
+                id: 7,
+            },
+            data: {
+                isLiked: !product?.isLiked
+            }
+        });
+        if (!data) return null;
+        return {"isLiked": data.isLiked};
+
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+};
+
 const ProductService = {
   getProductDetail,
+  putProductIsLike
 };
 
 export default ProductService;
