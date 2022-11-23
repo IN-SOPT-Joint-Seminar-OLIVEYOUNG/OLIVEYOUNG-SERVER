@@ -19,7 +19,18 @@ const getSearchMain = async (req: Request, res: Response) => {
   }
 };
 
+//* 검색 결과 조회
+const getSearchData = async (req: Request, res: Response) => {
+  const name = req.query.name;
+  try {
+    const data = await SearchService.getSearchData();
+    if (!data) {
+      return res.status(sc.NOT_FOUND).send(fail(sc.NOT_FOUND, rm.NOT_FOUND));
+    }
+    return res.status(sc.OK).send(success(sc.OK, rm.GET_SEARCH_RESULT_SUCCESS, data));
+
 const SearchController = {
+  getSearchData,
   getSearchMain,
 };
 

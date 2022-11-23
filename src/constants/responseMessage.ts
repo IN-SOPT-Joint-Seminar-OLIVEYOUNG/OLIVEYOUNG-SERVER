@@ -15,6 +15,7 @@ export default {
   //상품
   GET_PRODUCT_DETAIL_SUCCESS: "상품 상세 화면 조회 성공",
   LIKE_SUCCESS: "좋아요 성공",
+  
 
   // 서버 내 오류
   INTERNAL_SERVER_ERROR: "서버 내 오류",

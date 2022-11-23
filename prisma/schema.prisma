@@ -35,3 +35,11 @@ model RecentWord {
   id   Int     @id @default(autoincrement())
   word String? @db.VarChar(100)
 }
+
+model User {
+  id       Int    @id(map: "user_pk") @unique(map: "user_id_uindex") @default(autoincrement())
+  userName String @db.VarChar(100)
+  age      Int?
+  email    String @db.VarChar(400)
+  password String @db.VarChar(400)
+}
