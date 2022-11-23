@@ -1,19 +1,26 @@
-import { PrismaClient } from "@prisma/client";
-import { BrandResponseDTO } from "../interfaces/BrandResponseDTO";
+import { PrismaClient, Product } from "@prisma/client";
 import { ProductResponseDTO } from "../interfaces/ProductResponseDTO";
+import { SearchResponseDTO } from "../interfaces/SearchResponseDTO";
+import { BrandResponseDTO } from "../interfaces/BrandResponseDTO";
+
 const prisma = new PrismaClient();
 
-//* 검색 결과 가져오기
-const getSearchData = async () => {
+//* 메인 검색 화면
+const getSearchMain = async (): Promise<SearchResponseDTO | null> => {
   try {
-    const searchedProductList: ProductResponseDTO[] = [];
-    const searchedProducts = [7, 8, 9, 10, 16, 17, 18, 19, 20, 21, 22, 23];
+    const productList: ProductResponseDTO[] = [];
 
-    for (var i = 0; i < searchedProducts.length; i++) {
+    const recentWordList: string[] = [];
+    const recentWords = await prisma.recentWord.findMany();
+    recentWords.map((recentWord) => {
+      recentWordList.push(recentWord.word as string);
+    });
+
+    for (var i = 1; i <= 3; i++) {
       const product = await prisma.product.findUnique({
         where: {
-          id: searchedProducts[i]
-        }
+          id: i,
+        },
       });
 
       if (!product) return null;
@@ -21,7 +28,7 @@ const getSearchData = async () => {
       const brand = await prisma.brand.findUnique({
         where: {
           id: product.brand as number,
-        }
+        },
       });
 
       const data = {
@@ -34,6 +41,33 @@ const getSearchData = async () => {
 
       if (!data) return null;
 
+      productList.push(data);
+    }
+
+    const searchMainData: SearchResponseDTO = {
+      recentWords: recentWordList as string[],
+      products: productList as ProductResponseDTO[],
+    };
+
+    return searchMainData;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+
+//* 검색 결과 가져오기
+const getSearchData = async () => {
+  try {
+    const searchedProductList: ProductResponseDTO[] = [];
+    const searchedProducts = [7, 8, 9, 10, 16, 17, 18, 19, 20, 21, 22, 23];
+
+    for (var i = 0; i < searchedProducts.length; i++) {
+      const product = await prisma.product.findUnique({
+        where: {
+          id: searchedProducts[i]
+        }
       searchedProductList.push(data);
     }
 
@@ -59,6 +93,7 @@ const getSearchData = async () => {
       searchedBrandList.push(data);
     }
     return {"brands": searchedBrandList, "products": searchedProductList};
+     
   } catch (error) {
     console.log(error);
     throw error;
@@ -67,6 +102,7 @@ const getSearchData = async () => {
 
 const SearchService = {
     getSearchData,
+    getSearchMain,
 };
 
 export default SearchService;
